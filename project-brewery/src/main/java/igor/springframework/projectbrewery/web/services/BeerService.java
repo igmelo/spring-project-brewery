@@ -1,6 +1,7 @@
 package igor.springframework.projectbrewery.web.services;
 
 import igor.springframework.projectbrewery.web.model.BeerDTO;
+import igor.springframework.projectbrewery.web.model.v2.BeerDTOv2;
 
 import java.util.UUID;
 

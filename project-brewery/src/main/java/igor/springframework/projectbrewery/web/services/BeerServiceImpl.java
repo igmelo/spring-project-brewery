@@ -26,7 +26,7 @@ public class BeerServiceImpl implements BeerService{
 
     @Override
     public void updateBeer(UUID beerId, BeerDTO beerDTO) {
-
+        log.debug("Updating a beer...");
     }
 
     @Override

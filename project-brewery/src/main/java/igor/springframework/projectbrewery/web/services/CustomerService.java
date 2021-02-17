@@ -1,9 +1,16 @@
 package igor.springframework.projectbrewery.web.services;
 
+import igor.springframework.projectbrewery.web.model.BeerDTO;
 import igor.springframework.projectbrewery.web.model.CustomerDTO;
 
 import java.util.UUID;
 
 public interface CustomerService {
     CustomerDTO getCustomerById(UUID customerId);
+
+    CustomerDTO saveNewCustomer(CustomerDTO customerDTO);
+
+    void updateCustomer(UUID customerId, CustomerDTO customerDTO);
+
+    void deleteCustomerById(UUID customerId);
 }

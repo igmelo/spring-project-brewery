@@ -2,6 +2,9 @@ package igor.springframework.projectbrewery.web.controller.v2;
 
 import igor.springframework.projectbrewery.web.model.v2.BeerDTOv2;
 import igor.springframework.projectbrewery.web.services.v2.BeerServiceV2;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import lombok.val;
 import org.apache.coyote.Response;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -16,16 +19,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-@Validated
+@Slf4j
+@RequiredArgsConstructor //lombok will create a constructor for us
 @RequestMapping("api/v2/beer")
 @RestController
 public class BeerControllerV2 {
     private final BeerServiceV2 beerServiceV2;
-
-    public BeerControllerV2(BeerServiceV2 beerServiceV2) {
-
-        this.beerServiceV2 = beerServiceV2;
-    }
 
     @GetMapping("/{beerId}") //GET method
     public ResponseEntity<BeerDTOv2> getBeer(@NotNull @PathVariable UUID beerId){
@@ -34,11 +33,14 @@ public class BeerControllerV2 {
 
     @PostMapping //POST method
     public ResponseEntity handlePost(@Valid @NotNull @RequestBody BeerDTOv2 beerDTO){
-        BeerDTOv2 savedDTO = beerServiceV2.saveNewBeer(beerDTO);
 
-        HttpHeaders headers = new HttpHeaders();
+        log.debug("in handle post...");
+
+        val savedDTO = beerServiceV2.saveNewBeer(beerDTO);//LOMBOK will compile this object for us
+
+        val headers = new HttpHeaders();//same here lombok
         headers.add("Location","/api/v1/beer/" + savedDTO.getId().toString());
-
+        //todo add hostname to url
         return new ResponseEntity(headers, HttpStatus.CREATED);
     }
 

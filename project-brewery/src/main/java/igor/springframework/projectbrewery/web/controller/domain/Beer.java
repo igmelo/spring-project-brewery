@@ -1,5 +1,6 @@
-package igor.springframework.projectbrewery.web.model.v2;
+package igor.springframework.projectbrewery.web.controller.domain;
 
+import igor.springframework.projectbrewery.web.model.v2.BeerStyleEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,11 +12,9 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class BeerDTOv2 {
-
+public class Beer {
     private UUID id;
     private String beerName;
-    private BeerStyleEnum beerStyle;
+    private BeerStyleEnum beerStyleEnum;
     private Long upc;
-
 }
